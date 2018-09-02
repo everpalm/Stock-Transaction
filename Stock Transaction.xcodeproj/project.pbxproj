@@ -6,11 +6,24 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXFileReference section */
+		9A913E09213BD193000AE4B5 /* main.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = main.py; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
 /* Begin PBXGroup section */
 		9A7A883A213BCC2900C7531A = {
 			isa = PBXGroup;
 			children = (
+				9AD3F728213C277D00B6E637 /* New Group */,
+				9A913E09213BD193000AE4B5 /* main.py */,
 			);
+			sourceTree = "<group>";
+		};
+		9AD3F728213C277D00B6E637 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -22,7 +35,8 @@
 			buildConfigurationList = 9A7A8842213BCC2900C7531A /* Build configuration list for PBXLegacyTarget "Stock Transaction" */;
 			buildPhases = (
 			);
-			buildToolPath = /usr/bin/python;
+			buildToolPath = /usr/local/bin/python3;
+			buildWorkingDirectory = "";
 			dependencies = (
 			);
 			name = "Stock Transaction";
