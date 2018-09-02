@@ -8,22 +8,26 @@
 
 /* Begin PBXFileReference section */
 		9A913E09213BD193000AE4B5 /* main.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = main.py; sourceTree = "<group>"; };
+		9AD3F729213C2A1700B6E637 /* __init__.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = __init__.py; sourceTree = "<group>"; };
+		9AD3F72A213C2E1F00B6E637 /* get_stock.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = get_stock.py; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		9A7A883A213BCC2900C7531A = {
 			isa = PBXGroup;
 			children = (
-				9AD3F728213C277D00B6E637 /* New Group */,
+				9AD3F728213C277D00B6E637 /* stock */,
 				9A913E09213BD193000AE4B5 /* main.py */,
 			);
 			sourceTree = "<group>";
 		};
-		9AD3F728213C277D00B6E637 /* New Group */ = {
+		9AD3F728213C277D00B6E637 /* stock */ = {
 			isa = PBXGroup;
 			children = (
+				9AD3F729213C2A1700B6E637 /* __init__.py */,
+				9AD3F72A213C2E1F00B6E637 /* get_stock.py */,
 			);
-			path = "New Group";
+			path = stock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
