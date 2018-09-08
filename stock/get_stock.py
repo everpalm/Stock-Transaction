@@ -33,14 +33,16 @@ def export_data(year_start, year_end, stock_num):
 
 def import_data(stock_num, date_start, date_end):
     df = pd.read_csv(stock_num + '_raw_data.csv',encoding='utf-8')
-    #print(df)
-    #print(date_start)
+
+    ''' Refactor format of year, month and day
+    '''
     year_start = date_start[0:4]
     month_start = date_start[4:6]
     day_start = date_start[6:8]
     year_end = date_end[0:4]
     month_end = date_end[4:6]
     day_end = date_end[6:8]
+    
     logger.debug('date_start = %s, year_start = %s, month_start = %s, day_start = %s', date_start, year_start, month_start, day_start)
     logger.debug('date_end = %s, year_end = %s, month_end = %s, day_end = %s', date_end, year_end, month_end, day_end)
     year_start_tw = str(int(year_start) - 1912)
