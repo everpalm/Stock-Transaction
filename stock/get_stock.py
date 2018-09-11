@@ -6,6 +6,7 @@ import json
 import sys
 import codecs
 from time import sleep
+import matplotlib.pyplot as plt
 
 sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
 
@@ -32,6 +33,15 @@ class MyStock:
             for month_count in range(1, 13, 1):
                 date_count = "{0}{1:02d}01".format(year_count, month_count)
                 df_temp = self.get_data(date_count)
+                #df_temp = df_temp.replace('+','')
+                #df_temp = df_temp['漲跌價差']
+                #df_temp = df_temp['漲跌價差'].values
+                #df_temp = df_temp['漲跌價差'].replace('X0.00','0')
+                #df_temp = df_temp['漲跌價差'].apply(pd.to_numeric, errors='ignore')
+                #logger.debug('df_temp = %s', df_temp)
+                #df_temp = df_temp['漲跌價差'].str.replace('+','')
+                #logger.debug('df_temp = %s', df_temp['漲跌價差'])
+                #df_temp = df_temp['漲跌價差'].replace('X','')
                 df = df.append(df_temp, ignore_index=True)
                 sleep(3)
         print(df)
@@ -48,10 +58,17 @@ class MyStock:
         month_end = date_end[4:6]
         day_end = date_end[6:8]
     
-        logger.debug('date_start = %s, year_start = %s, month_start = %s, day_start = %s', date_start, year_start, month_start, day_start)
-        logger.debug('date_end = %s, year_end = %s, month_end = %s, day_end = %s', date_end, year_end, month_end, day_end)
-        year_start_tw = str(int(year_start) - 1912)
-        year_end_tw =  str(int(year_end) - 1912)
-        temp = df[(df['日期'] > year_start_tw + '/' + month_start + '/' + day_start) & (df['日期'] < year_end_tw + '/' + month_end + '/' + day_end)]
+        year_start_tw = str(int(year_start) - 1911)
+        year_end_tw =  str(int(year_end) - 1911)
+        logger.debug('date_start = %s, year_start_tw = %s, month_start = %s, day_start = %s', date_start, year_start_tw, month_start, day_start)
+        logger.debug('date_end = %s, year_end_tw = %s, month_end = %s, day_end = %s', date_end, year_end_tw, month_end, day_end)
+        temp = df[(df['日期'] >= year_start_tw + '/' + month_start + '/' + day_start) & (df['日期'] <= year_end_tw + '/' + month_end + '/' + day_end)]
         return temp
 
+    def average_data(self, date_start, date_end):
+        df = self.import_data(date_start, date_end)
+        #print(df)
+        del df['Unnamed: 0']
+        print(df)
+        df.groupby('漲跌價差').mean()
+        return df
