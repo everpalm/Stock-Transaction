@@ -14,15 +14,17 @@ stock_2454 = sgs.MyStock('2454')
 df = stock_2454.import_data('20170705', '20170707')
 print(df)
 #print(len(df['漲跌價差']))
+'''
 df_length = len(df['漲跌價差'])
 row_num = 0
 for series_element in df['漲跌價差']:
-    logger.debug('series_element = %s', series_element)
+    logger.debug('Before series_element = %s', series_element)
     if series_element == 'X0.00':
         series_element = series_element.replace('X','')
     series_element = float(series_element)
     print(series_element)
-    logger.debug('series_element = %f', series_element)
+    logger.debug('After series_element = %f', series_element)
+'''
 #df['漲跌價差'].values = df['漲跌價差'].values.astype(float)
 #df['漲跌價差'].values = df['漲跌價差'].replace('X0.00','0')
 #print(df['漲跌價差'].values)

@@ -54,7 +54,10 @@ class MyStock:
         logger.debug('date_start = %s, year_start_tw = %s, month_start = %s, day_start = %s', date_start, year_start_tw, month_start, day_start)
         logger.debug('date_end = %s, year_end_tw = %s, month_end = %s, day_end = %s', date_end, year_end_tw, month_end, day_end)
         temp = df[(df['日期'] >= year_start_tw + '/' + month_start + '/' + day_start) & (df['日期'] <= year_end_tw + '/' + month_end + '/' + day_end)]
-        return temp
+        df_difference = self.preprocess_data(temp, '漲跌價差')
+        df_date = temp['日期'].reset_index(drop=True)
+        df = pd.DataFrame({'日期': df_date, '漲跌價差': df_difference})
+        return df
 
     def average_data(self, date_start, date_end):
         df = self.import_data(date_start, date_end)
@@ -63,3 +66,19 @@ class MyStock:
         print(df)
         df.groupby('漲跌價差').mean()
         return df
+
+    def preprocess_data(self, target_df, target_col):
+        result_df = pd.Series()
+        for series_element in target_df[target_col]:
+            logger.debug('Before series_element = %s', series_element)
+            if series_element == 'X0.00':
+                series_element = series_element.replace('X','')
+            series_element = float(series_element)
+            #print(series_element)
+            result_df = result_df.append(pd.Series([series_element])).reset_index(drop=True)
+            #print(result_df)
+        return result_df
+        #df = pd.DataFrame({target_col: result_df})
+        #return df
+            #logger.debug('After series_element = %f', series_element)
+            #result_df = result_df.append(
