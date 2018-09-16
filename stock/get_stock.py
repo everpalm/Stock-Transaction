@@ -29,22 +29,13 @@ class MyStock:
 
     def export_data(self, year_start, year_end):
         df = pd.DataFrame()
+        df_temp = pd.Series()
         for year_count in range(year_start, year_end, 1):
             for month_count in range(1, 13, 1):
                 date_count = "{0}{1:02d}01".format(year_count, month_count)
                 df_temp = self.get_data(date_count)
-                #df_temp = df_temp.replace('+','')
-                #df_temp = df_temp['漲跌價差']
-                #df_temp = df_temp['漲跌價差'].values
-                #df_temp = df_temp['漲跌價差'].replace('X0.00','0')
-                #df_temp = df_temp['漲跌價差'].apply(pd.to_numeric, errors='ignore')
-                #logger.debug('df_temp = %s', df_temp)
-                #df_temp = df_temp['漲跌價差'].str.replace('+','')
-                #logger.debug('df_temp = %s', df_temp['漲跌價差'])
-                #df_temp = df_temp['漲跌價差'].replace('X','')
                 df = df.append(df_temp, ignore_index=True)
                 sleep(3)
-        print(df)
         df.to_csv(self.stock_num + '_raw_data.csv', encoding='utf-8')
 
     def import_data(self, date_start, date_end):
