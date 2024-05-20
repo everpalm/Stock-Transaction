@@ -11,8 +11,6 @@ import matplotlib.pyplot as plt
 sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
 
 logging.basicConfig(level=logging.DEBUG)
-#logging.basicConfig(level=logging.CRITICAL)
-
 logger = logging.getLogger(__name__)
 
 class MyStock:
@@ -20,8 +18,17 @@ class MyStock:
         self.stock_num = stock_num
 
     def get_data(self, trade_date):
+        ''' Func:
+                MyStock::get_data
+            Args:
+                trade_date:
+            Returns:
+                df: data frame
+        '''
         logger.debug('trade_date = %s, stock_num = %s', trade_date, self.stock_num)
+        #res = requests.get("http://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date=" + trade_date + "&stockNo=" + self.stock_num + "&_=1535725086036")
         res = requests.get("http://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date=" + trade_date + "&stockNo=" + self.stock_num + "&_=1535725086036")
+
         result = json.loads(res.text)
         df = pd.DataFrame(result['data'])
         df.columns = result['fields']
